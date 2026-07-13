@@ -1,0 +1,36 @@
+//To create new sprint boot application from search
+mvn archetype:generate -DgroupId=com.h2 -DartifactId=book-search -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+//To run the application
+cd book-search
+mvn spring-boot:run
+
+//To build the application
+mvn clean package
+
+//To test the application
+curl http://localhost:8080/hello
+______________________________________________________________________________________
+docker-compose up -d
+docker ps
+docker exec -it library-db psql -U admin -d library // i --> interactive mode, -T --> terminal mode
+______________________________________________________________________________________
+Exception:
+CompletableFuture: In multi-threaded environment, 
+exception thrown in a background thread may not be visible to the main thread/ propagate to main thread
+
+Exceptions are wrapped in CompletionException, to handle them properly, we need to use following pipeline methods:
+ 1) exceptionally() --> act like catch block, used to logg the error and provide fallback values so the pipeline can continue
+ 2) handle()        --> act like finally block, it always executes, giving you access to both success(if any) and failure/exception(if any) cases
+ 3) whenComplete()  --> Used mainly to perform logging/cleanup operations, unlike handle, it doesn't allow you to modify the result
+______________________________________________________________________________________
+
+______________________________________________________________________________________
+
+______________________________________________________________________________________
+
+______________________________________________________________________________________
+
+______________________________________________________________________________________
+
+______________________________________________________________________________________
