@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -68,6 +70,16 @@ public class FindMaxOrMin {
         //transactions.stream().collect(Collectors.groupingBy(Transaction::getDepartment)).forEach((dept, trans) -> System.out.println(dept + " " + trans));
         //var result = transactions.stream().collect(Collectors.groupingBy(Transaction::getDepartment, Collectors.summarizingDouble(Transaction::getAmount)));
         //System.out.println(result);
+
+        // Using a Map<String, Double> to store results
+        
+        /*Map<String, Double> averageByCurrency = transactions.stream()
+        .filter(Objects::nonNull) // Defensive programming
+        .collect(Collectors.groupingBy(
+            Transaction::getCurrency, 
+            Collectors.averagingDouble(Transaction::getAmount)
+        ));
+        */
 
         //List<String> languages = List.of("Java", "Python", "C++", "JavaScript");
         //List<String> languages = List.of("Java", "java");
