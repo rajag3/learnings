@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 4px solid #764ba2;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        p {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        pre {
+            background: #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #f8f8f2;
+        }
+
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #667eea;
+            margin: 30px 0;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Learning Notes</h1><br>
+<p><br>
+____________________________________________________________________________________________________________<br>
+<strong>streams</strong>: java 8 feature<br>
+powerfull and more readable code using streams<br>
+ --> intermediate operations: filter(), sorted(), map()<br>
+ --> terminal operations : collect(), forEach()<br>
+</p><br>
+<p><br>
+ Filtering first and then sorting (filter().sorted()) is universally considered the best practice.Chaining your stream operations in this order significantly optimizes both performance and memory management.Why filter() Then sorted() Is BestFewer Elements to Sort: Sorting is an expensive computational task with a time complexity of \(O(N \log N)\). By filtering out unwanted data first, you reduce \(N\) to a much smaller number, making the sorting process significantly faster.Reduced Memory Footprint: The filter() operation is stateless and processes elements lazily one by one. Conversely, sorted() is a stateful intermediate operation; it must buffer and dump the entire collection into memory horizontally before it can sort them. Filtering first ensures you do not waste memory buffering elements you intend to discard<br>
+____________________________________________________________________________________________________________<br>
+<strong>Method Reference</strong>: java 8 feature<br>
+ --> provides shorthand notation for a Lambda Expression to call an existing method.<br>
+ --> Cleaner and more readable.<br>
+ static method example: Integer::parseInt<br>
+ instance method: System.out::println<br>
+ Constructure: ArrayList::new<br>
+  list.forEach(item -> System.out.println(item)); // using lambda expression<br>
+  list.forEach(System.out::println); // using method reference<br>
+</p><br>
+<p><br>
+____________________________________________________________________________________________________________<br>
+</p><br>
+<h1>Collections:</h1><br>
+<p><br>
+ --> LinkedList<br>
+    A LinkedList in Java is a part of the java.util package and is a doubly-linked list implementation of the List and Deque interfaces. Unlike an ArrayList, which uses a dynamic array internally, a LinkedList stores elements in nodes where each node contains the data and two pointers: one to the next node and one to the previous node.<br>
+</p><br>
+<p><br>
+    How it Works (Under the Hood)<br>
+    Imagine a treasure hunt where every clue gives you the location of the next clue and the previous one. That is a LinkedList.<br>
+</p><br>
+<p><br>
+    Key Characteristics<br>
+        1) Dynamic Memory: It does not require a contiguous block of memory. Nodes are scattered in heap memory, connected by pointers.<br>
+</p><br>
+<p><br>
+        2) Performance Trade-off:<br>
+</p><br>
+<p><br>
+         --> Additions/Removals: Extremely fast (O(1)) if you are at the position (head or tail), because you just update the pointers.<br>
+</p><br>
+<p><br>
+         --> Access: Slow (O(n)) because you have to traverse from the head or tail to reach a specific index.<br>
+</p><br>
+<p><br>
+         public class LinkedListDemo {<br>
+            public static void main(String[] args) {<br>
+                LinkedList fruitListlist = new LinkedList<>();<br>
+                fruitListlist.add("mango");<br>
+                fruitListlist.add("banana");<br>
+                fruitListlist.add("apple");<br>
+</p><br>
+<p><br>
+                System.out.println(fruitListlist.get(0)); //mango<br>
+                System.out.println(fruitListlist.getFirst());//mango<br>
+                System.out.println(fruitListlist.getLast()); //apple<br>
+                System.out.println(fruitListlist.poll()); // mango<br>
+                System.out.println(fruitListlist.pop()); // banana<br>
+</p><br>
+<p><br>
+        Despite the theoretical O(1) performance for insertions, ArrayList is preferred in the vast majority of real-world Spring Boot applications. Why?<br>
+</p><br>
+<p><br>
+        CPU Cache Locality: ArrayList stores data contiguously in memory, which is much faster for modern CPU caches compared to the "pointer hopping" required by LinkedList.<br>
+</p><br>
+<p><br>
+        Memory Footprint: LinkedList creates a new Node object for every single element added, significantly increasing garbage collection pressure.<br>
+</p><br>
+<p><br>
+        Would you like to see how LinkedList acts as a Deque (Double-Ended Queue) in scenarios like building a task processing queue in a microservice, or are you interested in the memory overhead details?<br>
+        ------------------<br>
+ -->         <br>
+</p><br>
+<p><br>
+____________________________________________________________________________________________________________<br>
+</p><br>
+<h2>Spring Boot</h2><br>
+<h3>Create new Spring Boot application</h3><br>
+<pre><code class="language-bash">mvn archetype:generate -DgroupId=com.h2 -DartifactId=book-search -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false<br>
+</code></pre><br>
+<h3>Run the application</h3><br>
+<pre><code class="language-bash">cd book-search<br>
+<p><br>
+mvn spring-boot:run<br>
+</code></pre><br>
+</p><br>
+<h3>Build the application</h3><br>
+<pre><code class="language-bash">mvn clean package<br>
+</code></pre><br>
+<h3>Test the application</h3><br>
+<pre><code class="language-bash">curl http://localhost:8080/hello<br>
+</code></pre><br>
+<hr><br>
+<h2>Docker</h2><br>
+<h3>Start PostgreSQL container</h3><br>
+<pre><code class="language-bash">docker-compose up -d<br>
+</code></pre><br>
+<h3>List running containers</h3><br>
+<pre><code class="language-bash">docker ps<br>
+</code></pre><br>
+<h3>Connect to PostgreSQL database</h3><br>
+<pre><code class="language-bash">docker exec -it library-db psql -U admin -d library<br>
+</code></pre><br>
+<ul><br>
+  <li><code>-i</code> → interactive mode</li><br>
+  <li><code>-T</code> → terminal mode</li><br>
+</ul><br>
+<hr><br>
+<h2>CompletableFuture Exception Handling</h2><br>
+<p><br>
+In multi-threaded environments, exceptions thrown in background threads may not be visible to the main thread or propagate to it.<br>
+</p><br>
+<p><br>
+Exceptions are wrapped in <code>CompletionException</code>. To handle them properly, use the following pipeline methods:<br>
+</p><br>
+<ol><br>
+  <li><strong>exceptionally()</strong> - Acts like a catch block, used to log errors and provide fallback values so the pipeline can continue</li><br>
+  <li><strong>handle()</strong> - Acts like a finally block, always executes, giving access to both success (if any) and failure/exception (if any) cases</li><br>
+  <li><strong>whenComplete()</strong> - Used mainly for logging/cleanup operations; unlike handle, it doesn't allow you to modify the result</li><br>
+</ol><br>
+<hr><br>
+<h2>Additional Notes</h2><br>
+<em>Add new topics here as you learn them</em><br>
+    <strong>generics in java</strong><br>
+<p><br>
+     --> substitution<br>
+     --> wild-card (?)<br>
+     Producer Extends Consumer Super(PECS)<br>
+     import java.util.List;<br>
+     import java.util.ArrayList;<br>
+</p><br>
+<p><br>
+        public class PecsExample {<br>
+            // src 'produces' Ts, dest 'consumes' Ts<br>
+            public static <T> void copy(List<? extends T> src, List<? super T> dest) {<br>
+                for (T item : src) {<br>
+                    dest.add(item);<br>
+                }<br>
+            }<br>
+</p><br>
+<p><br>
+            public static void main(String[] args) {<br>
+                List<Integer> integers = new ArrayList<>(List.of(1, 2, 3));<br>
+                List<Number> numbers = new ArrayList<>();<br>
+</p><br>
+<p><br>
+                // Safe because Integer extends Number<br>
+                copy(integers, numbers); <br>
+            }<br>
+        }<br>
+</p><br>
+<strong>Fragile Base Class Problem</strong><br>
+<p><br>
+        Use the final Keyword: If a class is not specifically designed to be extended, mark it or its overridable methods as final. This strictly prohibits inheritance and prevents the Fragile Base Class problem altogether.<br>
+</p><br>
+<p><br>
+        The "fragile" design pattern usually refers to the Fragile Base Class Problem, an anti-pattern in object-oriented programming where changes to a base class unintentionally break derived classes. This occurs due to tight inheritance coupling. You can prevent it by favoring composition over inheritance and using<br>
+</p><br>
+<p><br>
+        Follow the Open/Closed Principle (OCP): Design your code so that classes are open for extension but closed for modification<br>
+</p><br>
+<p><br>
+        to fix this fragile <br>
+</p><br>
+<strong>Question 5: Bridge Methods (The "Under the Hood" Specialist Question)</strong><br>
+<p><br>
+If you have a compiled class file, you can run javap -v StringBox.class in your terminal. You will see a method marked with the ACC_BRIDGE and ACC_SYNTHETIC flags.<br>
+</p><br>
+<p><br>
+ACC_BRIDGE: Tells the compiler/JVM this is a compiler-generated method for type safety.<br>
+</p><br>
+<p><br>
+ACC_SYNTHETIC: Tells the compiler this was not in your original source code.<br>
+</p><br>
+<p><br>
+You've successfully cleared the 5-question gauntlet! You've covered PECS, Type Erasure/Overloading, Array constraints, Reflection/Fragility, and now Bridge Methods.<br>
+</p><br>
+<p><br>
+Since you are at the 10+ year experience mark, are there any other specific "pain points" or "under the hood" Java behaviors you've encountered that you'd like to demystify, or shall we wrap up our deep dive into Generics?<br>
+</p>
+    </div>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+    </script>
+</body>
+</html>

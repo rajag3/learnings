@@ -1,1 +1,5 @@
+com\h2\controller\BookControllerTest.class
 com\h2\AppTest.class
+com\h2\repository\DataJpaTest.class
+com\h2\repository\BookRepositoryTest.class
+com\h2\service\BookServiceTest.class

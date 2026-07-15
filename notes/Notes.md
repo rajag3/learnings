@@ -1,4 +1,25 @@
 # Learning Notes
+what is the use of this and why we have this in pom .xml
+do we have anything better than this in the market
+is all the people are using this
+is this valid now, pros and cons
+
+
+Spring Data JPA --> jakarta  - Jakarta EE 9
+ ORM (Object-Relational Mapping) framework. 
+ The shift from javax.persistence (JPA) to jakarta.persistence happened because Oracle handed over the Java EE (Enterprise Edition) trademark to the Eclipse Foundation in 2017. Oracle restricted the use of the javax.* namespace for future evolution of these specifications, forcing the community to fork and rename everything to jakarta.* starting with Jakarta EE 9
+
+DTO stands for Data Transfer Object.
+ It is a design pattern used to transfer data between different layers of an application.
+Why Use DTOs in JPA?
+    •	Optimises Performance: Fetches only the database columns you actually need.
+    •	Improves Security: Hides sensitive entity fields like passwords or internal IDs.
+    •	Reduces Payload Size: Prevents loading massive, deeply nested database relationships.
+    •	Decouples Layers: Keeps your database schema separate from the API presentation layer. [1, 2, 3, 4, 5]
+
+
+
+ N+1 Query Problem
 ____________________________________________________________________________________________________________
 **streams**: java 8 feature
 powerfull and more readable code using streams
@@ -46,15 +67,7 @@ ________________________________________________________________________________
                 System.out.println(fruitListlist.poll()); // mango
                 System.out.println(fruitListlist.pop()); // banana
 
-                System.out.println(fruitListlist.remove()); // apple
-
-                // if the list is empty poll will return but pop will through exception
-                System.out.println(fruitListlist.poll()); // null
-                System.out.println(fruitListlist.pop()); // Exception in thread "main" java.util.NoSuchElementException
-            }
-        }
-
-        Enterprise Perspective: Why it is often not chosen
+ 
         Despite the theoretical O(1) performance for insertions, ArrayList is preferred in the vast majority of real-world Spring Boot applications. Why?
 
         CPU Cache Locality: ArrayList stores data contiguously in memory, which is much faster for modern CPU caches compared to the "pointer hopping" required by LinkedList.
@@ -109,6 +122,21 @@ docker exec -it library-db psql -U admin -d library
 ```
 - `-i` → interactive mode
 - `-T` → terminal mode
+
+docker pull dpage/pgadmin4
+
+docker run -d -p 8080:80 --name pgadmin -e PGADMIN_DEFAULT_EMAIL=admin@pgadmin.org -e PGADMIN_DEFAULT_PASSWORD=admin dpage/pgadmin4 --network book-search_default
+
+full-text-search index
+alter table public.books add column search_vector tsvector;
+
+update table public.books set search_vector = 
+ setweight(to_tsvector('english', title), 'A') ||
+ setweight(to_tsvector('english', author), 'B') ||
+ setweight(to_tsvector('english', description), 'C');
+
+ -- select to_tsquery('english','completed|working')
+ -- 'complet' | 'work'
 
 ---
 
@@ -172,3 +200,6 @@ You've successfully cleared the 5-question gauntlet! You've covered PECS, Type E
 Since you are at the 10+ year experience mark, are there any other specific "pain points" or "under the hood" Java behaviors you've encountered that you'd like to demystify, or shall we wrap up our deep dive into Generics?
 
 
+---
+euro server
+microservices
