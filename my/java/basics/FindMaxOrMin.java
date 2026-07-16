@@ -104,19 +104,44 @@ public class FindMaxOrMin {
         .sum();
         System.out.println("Sum of salary: " + maxSalary);
         /*
-            Should you use .parallelStream() here?
-                For a list of employees (like your list of 4), do not use parallel streams.
+Should you use .parallelStream() here?
+ For a list of employees (like your list of 4), do not use parallel streams.
 
-                Here is why:
+  Here is why:
 
-                Overhead Cost: Setting up a parallel operation takes time and CPU resources. For small lists, it takes much longer to "split" the work and "merge" the results back together than it would have taken just to add the numbers sequentially.
+   Overhead Cost: Setting up a parallel operation takes time and CPU resources. 
+   For small lists, it takes much longer to "split" the work and "merge" the results back together 
+   than it would have taken just to add the numbers sequentially.
 
-                When to actually use it: Only switch to .parallelStream() if you have massive datasets (e.g., hundreds of thousands of records) and the operation you are performing is complex or time-consuming.
+   When to actually use it: Only switch to .parallelStream() if you have massive datasets 
+    (e.g., hundreds of thousands of records) and the operation you are performing is complex or time-consuming.
 
-                Thread Safety: When using parallelStream(), you must ensure that the operations inside your pipeline are "stateless" and "thread-safe." Summing numbers is perfectly safe, but if you were doing something that updates an external variable or a database, you would run into major bugs.
+   Thread Safety: When using parallelStream(), you must ensure that the operations inside your pipeline are "stateless" 
+    and "thread-safe." Summing numbers is perfectly safe, but if you were doing something that updates an external variable or a database, you would run into major bugs.
 
-                Rule of Thumb: Stick to .stream() by default. Only reach for .parallelStream() if you have performed performance testing and proven that your specific use case is actually faster with it.
-        */
+   Rule of Thumb: Stick to .stream() by default. Only reach for .parallelStream() if you have performed performance 
+    testing and proven that your specific use case is actually faster with it.
+
+   The Theory: Why Stateful Lambdas Fail in Parallel
+   A lambda is stateless if its result depends only on its input. A stateful lambda (like incrementing a counter outside the stream) 
+   depends on the timing of thread execution.
+
+Question: Why is using a stateful lambda (a lambda that modifies an external variable, e.g., int count = 0; list.stream().peek(e -> count++);) considered a "cardinal sin" in parallel streams?
+
+
+What happens to the thread execution and the final result if you attempt this in a parallelStream()?
+  The Race Condition: In a parallelStream(), the JVM splits your data across multiple threads (using the ForkJoinPool). 
+  If you try to update an external int count, you are performing a non-atomic read-modify-write(RMW) operation. 
+  Multiple threads will read the same value of count, increment it, and write it back, causing "lost updates."
+
+  Thread Interference: Even if you use an AtomicInteger, you are effectively serializing the parallel process. 
+  You are forcing threads to wait on each other to update the counter, which completely negates the performance 
+  benefit of parallelStream().
+
+  Order Nondeterminism: Because parallel streams process elements in chunks across threads, you have no guarantee of the order 
+  in which the side effect occurs.
+
+   */
         
 
 

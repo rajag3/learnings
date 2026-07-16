@@ -1,4 +1,9 @@
 # Learning Notes
+
+____________________________________________________________________________________________________________
+**design patterns**:
+--> Transactional Outbox Pattern
+ The Transactional Outbox Pattern is an architectural design pattern used in event-driven microservices to solve the dual-write problem. It ensures absolute data consistency by guaranteeing that a local database update and the publishing of a corresponding integration event to a message broker (like Apache Kafka or RabbitMQ) happen atomically within a single transaction
 ____________________________________________________________________________________________________________
 **streams**: java 8 feature
 powerfull and more readable code using streams
@@ -7,6 +12,15 @@ powerfull and more readable code using streams
 
  Filtering first and then sorting (filter().sorted()) is universally considered the best practice.Chaining your stream operations in this order significantly optimizes both performance and memory management.Why filter() Then sorted() Is BestFewer Elements to Sort: Sorting is an expensive computational task with a time complexity of \(O(N \log N)\). By filtering out unwanted data first, you reduce \(N\) to a much smaller number, making the sorting process significantly faster.Reduced Memory Footprint: The filter() operation is stateless and processes elements lazily one by one. Conversely, sorted() is a stateful intermediate operation; it must buffer and dump the entire collection into memory horizontally before it can sort them. Filtering first ensures you do not waste memory buffering elements you intend to discard
 ____________________________________________________________________________________________________________
+**Thread**:
+ --> a ligh-weight subprocess that enables concurrent execution.
+ --> each thread has its own execution environment
+ --> has its own stack and local variables
+ --> threads can communicate with each other
+ --> threads share mem with each other
+ --> This maximize the cpu utilization and keeps programs responsive.
+____________________________________________________________________________________________________________
+
 **Method Reference**: java 8 feature
  --> provides shorthand notation for a Lambda Expression to call an existing method.
  --> Cleaner and more readable.
@@ -172,3 +186,10 @@ You've successfully cleared the 5-question gauntlet! You've covered PECS, Type E
 Since you are at the 10+ year experience mark, are there any other specific "pain points" or "under the hood" Java behaviors you've encountered that you'd like to demystify, or shall we wrap up our deep dive into Generics?
 
 
+______________________________________________________________________________________________________
+Question 3: Short-Circuiting vs. Non-Short-Circuiting
+In a stream pipeline, the order of operations is the difference between a high-performance service and one that hangs.
+
+Question: Explain the performance difference between limit() and sorted(). If you have a massive dataset of 1,000,000 transactions and you only need the "top 5" largest ones, why does the placement of these two methods in the pipeline change the execution time from "fast" to "extremely slow"?
+
+How would you structure that pipeline?
