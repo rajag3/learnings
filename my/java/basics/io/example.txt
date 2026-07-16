@@ -1,0 +1,7 @@
+Internal JDK classes using hashCode
+HashMap, LinkedHashMap, ConcurrentHashMap, WeakHashMap, IdentityHashMap
+HashSet, LinkedHashSet, CopyOnWriteArraySet (backed by list but uses equals/hashCode when converting)
+Hashtable, Properties
+String, Integer, etc. – override hashCode() for cache lookups.
+java.util.Objects helper: Objects.hash(a,b,c)
+ConcurrentSkipListMap? No – uses comparators.
