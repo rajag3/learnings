@@ -1,0 +1,14 @@
+langchain
+langchain-groq
+faiss-cpu
+tiktoken
+langchain-community
+langchain-openai
+chromadb
+sentence-transformers
+pypdf
+python-dotenv
+pymupdf
+python-docx
+doc2txt
+unstructured[docx]
