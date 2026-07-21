@@ -1,0 +1,19 @@
+[
+    {
+        "1-dataingestion.ipynbtimestamp": 1697059200,
+        "event": "login",
+        "userid": "user1"
+    },
+    {
+        "1-dataingestion.ipynbtimestamp": 1697062800,
+        "event": "logout",
+        "userid": "user2"
+    },
+    {
+        "1-dataingestion.ipynbtimestamp": 1697062800,
+        "event": "purchase",
+        "userid": "user3",
+        "item": "item1",
+        "amount": 29.99
+    }
+]
